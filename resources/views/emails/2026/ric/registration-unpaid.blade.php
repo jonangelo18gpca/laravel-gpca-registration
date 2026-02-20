@@ -78,87 +78,93 @@
     <p class="sub">GPCA Team</p>
 </x-mail::message> --}}
 
-
-
 <x-mail::message>
 
 Dear {{ $details['name'] }},
 
-Thank you for registering to attend the [{{ $details['eventName'] }}]({{ $details['eventLink'] }}), 18–19 May 2026 at the {{ $details['eventLocation'] }}.
+Thank you for registering to attend the 
+<a href="{{ $details['eventLink'] }}" target="_blank">
+{{ $details['eventName'] }}
+</a> taking place from 18–19 May 2026 at the {{ $details['eventLocation'] }}.
 
-<span style="color:#cc0000; font-weight:bold;">
-Please be advised that your registration is not yet confirmed.
-To avoid any inconvenience during onsite badge collection, please settle your payment or contact our finance team at <a href="mailto:analee@gpca.org.ae">analee@gpca.org.ae</a>.
-</span>
+<p style="color:#C00000;">
+Please be advised that your registration is not yet confirmed. To avoid any inconvenience during onsite badge collection, please settle your payment or contact our finance team at 
+<a href="mailto:analee@gpca.org.ae" style="color:#C00000;">analee@gpca.org.ae</a>.
+</p>
 
-<br>
+<p style="color:#C00000;">
+If you register at the early bird rate but do not settle your payment on or before the early bird deadline date, your registration fee will be adjusted to the standard rate.
+</p>
 
-<span style="color:#cc0000;">
-If you register at the early bird rate but do not settle your payment on or before the early bird deadline date,
-your registration fee will be adjusted to the standard rate.
-</span>
+Your registration details are as follows:
 
-
-### Your registration details are as follows:
-
-- **Full Name:** {{ $details['name'] }}
-- **Job Title:** {{ $details['jobTitle'] }}
-- **Company Name:** {{ $details['companyName'] }}
+• <strong>Full Name:</strong> {{ $details['name'] }}  
+• <strong>Job Title:</strong> {{ $details['jobTitle'] }}  
+• <strong>Company Name:</strong> {{ $details['companyName'] }}  
 @if ($sendInvoice)
-- **Amount Paid:** ${{ number_format($details['amountPaid'], 2, '.', ',') }}
+• <strong>Amount Paid:</strong> ${{ number_format($details['amountPaid'], 2, '.', ',') }}  
 @endif
-- **Transaction ID:** {{ $details['transactionId'] }}
+• <strong>Transaction ID:</strong> {{ $details['transactionId'] }}
 
 @if ($sendInvoice)
+
 <x-mail::button :url="$details['invoiceLink']" color="registration">
 Download Invoice
 </x-mail::button>
 
-<div style="height:20px;"></div>
 @endif
 
+<br/>
+To request updates to your registration details, kindly contact 
+<a href="mailto:jovelyn@gpca.org.ae">jovelyn@gpca.org.ae</a> 
+on or before 17<sup>th</sup> April to ensure your badge information is accurate.
 
-To request updates on your registration details, contact [jovelyn@gpca.org.ae](mailto:jovelyn@gpca.org.ae) on or before **17th April** to ensure your badge information is accurate.
-
-
-### Collection of Badges
+<br/>
+<br/>
+<strong>Collection of Badges</strong>
 
 Upon arrival, please proceed to the registration desk located in the Foyer to collect your event badge. Kindly present your ID or email confirmation for verification.
 
+<strong>Visa Inquiries</strong>
 
-### Visa Inquiries
+For any visa related inquiries, please contact our designated travel partner at Cozmo Travel. You may reach 
+<strong>John Uytiongco</strong> at 
+<a href="mailto:juytiongco@cozmotravel.com">juytiongco@cozmotravel.com</a> 
+or call +971 4 406 5802.
 
-For any visa related inquiries, please contact our designated travel partner at Cozmo Travel.  
-You may reach **John Uytiongco** at [juytiongco@cozmotravel.com](mailto:juytiongco@cozmotravel.com) or call +971 4 406 5802.
+<strong>Hotel Booking</strong>
 
-
-### Hotel Booking
-
-For hotel accommodation, please click the booking  
-[link](https://www.marriott.com/event-reservations/reservation-link.mi?id=1771313552687&key=GRP&app=resvlink&_branch_match_id=1552210776338362721&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXTywo0MtNLCrKzC8p0UvOz9UvSi3OyczLtgdK2ALZZSCOWmaKraG5uaGxobGpqZGZhbladmqlrXtQgFpdUWpaKlB3Xnp8UlF%2BeXFqka1rSnoqAChM6UVeAAAA)
+For hotel accommodation, please click the booking 
+<a href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1771313552687&key=GRP&app=resvlink&_branch_match_id=1552210776338362721&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXTywo0MtNLCrKzC8p0UvOz9UvSi3OyczLtgdK2ALZZSCOWmaKraG5uaGxobGpqZGZhbladmqlrXtQgFpdUWpaKlB3Xnp8UlF%2BeXFqka1rSnoqAChM6UVeAAAA">
+link
+</a>
 to secure the special hotel rate at the Le Meridien, Al Khobar, Saudi Arabia.
 
+If you have any questions or need assistance with the booking, kindly coordinate with 
+<a href="mailto:adnan.ahmed2@lemeridien.com">adnan.ahmed2@lemeridien.com</a> 
+or call +966 504940516.
 
-For any event-related queries, please reach out to:
+For any event-related queries, please reach out to the following team members:
 
-**Sponsorship, Exhibition, and Delegate Inquiries**
+Sponsorship, Exhibition, and Delegate Inquiries:  
+• Salman Khan and Jerry Rodrigues  
+• Email: 
+<a href="mailto:salman@gpca.org.ae">salman@gpca.org.ae</a>, 
+<a href="mailto:jerry@gpca.org.ae">jerry@gpca.org.ae</a>  
+• Telephone: +971 4 451 0666 ext 103 & 106
 
-- Salman Khan and Jerry Rodrigues  
-- Email: [salman@gpca.org.ae](mailto:salman@gpca.org.ae), [jerry@gpca.org.ae](mailto:jerry@gpca.org.ae)  
-- Telephone: +971 4 451 0666 ext 103 & 106  
+Stay updated on upcoming GPCA events and industry news by following our 
+<a href="https://www.linkedin.com/company/gulf-petrochemicals-and-chemicals-association-gpca-/">
+LinkedIn Page
+</a>. You can also connect with us on our official social media accounts: 
+<a href="https://twitter.com/GulfPetChem">Twitter</a>, 
+<a href="https://www.instagram.com/gulfpetchem/">Instagram</a>, 
+<a href="https://www.facebook.com/GulfPetChem?fref=ts">Facebook</a>, and 
+<a href="https://www.youtube.com/user/GPCAorg">YouTube</a>.
 
+Thank you, and we look forward to welcoming you in Saudi Arabia for the 8th GPCA Research & Innovation Conference.
 
-Stay updated on upcoming GPCA events and industry news by following our  
-[LinkedIn Page](https://www.linkedin.com/company/gulf-petrochemicals-and-chemicals-association-gpca-/).
-
-You can also connect with us on our official social media accounts:  
-[Twitter](https://twitter.com/GulfPetChem),  
-[Instagram](https://www.instagram.com/gulfpetchem/),  
-[Facebook](https://www.facebook.com/GulfPetChem?fref=ts),  
-[YouTube](https://www.youtube.com/user/GPCAorg).
-
-
-Best Regards,  
-**GPCA Team**
+Best regards,  
+GPCA Team
 
 </x-mail::message>
