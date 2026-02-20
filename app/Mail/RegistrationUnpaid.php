@@ -11,6 +11,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Attachment;
 
 class RegistrationUnpaid extends Mailable
 {
@@ -296,6 +297,13 @@ class RegistrationUnpaid extends Mailable
                     markdown: 'emails.registration-unpaid',
                 );
             }
+        } else if ($this->details['eventYear'] == '2026') {
+
+            if ($this->details['eventCategory'] == "RIC") {
+                return new Content(
+                    markdown: 'emails.2026.ric.registration-unpaid',
+                );
+            }
         } else {
             return new Content(
                 markdown: 'emails.registration-unpaid',
@@ -303,12 +311,14 @@ class RegistrationUnpaid extends Mailable
         }
     }
 
+
     /**
      * Get the attachments for the message.
      *
      * @return array
      */
-    public function attachments()
+
+    public function attachments(): array
     {
         return [];
     }

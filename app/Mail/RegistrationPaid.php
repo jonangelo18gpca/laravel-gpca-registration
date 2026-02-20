@@ -301,6 +301,13 @@ class RegistrationPaid extends Mailable
                     markdown: 'emails.registration-paid',
                 );
             }
+        } else if ($this->details['eventYear'] == '2026') {
+
+            if ($this->details['eventCategory'] == "RIC") {
+                return new Content(
+                    markdown: 'emails.2026.ric.registration-paid',
+                );
+            }
         } else {
             return new Content(
                 markdown: 'emails.registration-paid',
