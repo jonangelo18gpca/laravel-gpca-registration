@@ -9,8 +9,7 @@ Dear {{ $details['name'] }},
 <p style="margin:0 0 12px 0; font-size:14px;">
 Thank you for registering to attend 
 <a href="{{ $details['eventLink'] }}" target="_blank">{{ $details['eventName'] }}</a>, 
-taking place from <strong>18–19 May 2026</strong> at the 
-<strong>{{ $details['eventLocation'] }}</strong>.
+taking place from 18–19 May 2026 at the {{ $details['eventLocation'] }}.
 </p>
 
 <p style="margin:0 0 12px 0; font-size:14px;">
@@ -59,7 +58,7 @@ For any visa related inquiries, please contact our designated travel partner at 
 
 <p style="margin:0 0 6px 0; font-weight:600; font-size:14px;">Hotel Booking</p>
 
-<p style="margin:0 0 24px 0; font-size:14px;">
+<p style="margin:0 0 6px 0; font-size:14px;">
 For hotel accommodation, please click the booking 
 <a href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1771313552687&key=GRP&app=resvlink&_branch_match_id=1552210776338362721&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXTywo0MtNLCrKzC8p0UvOz9UvSi3OyczLtgdK2ALZZSCOWmaKraG5uaGxobGpqZGZhbladmqlrXtQgFpdUWpaKlB3Xnp8UlF%2BeXFqka1rSnoqAChM6UVeAAAA">
 link
@@ -67,10 +66,9 @@ link
 to secure the special hotel rate at the Le Meridien, Al Khobar, Saudi Arabia.
 </p>
 
-<p style="margin:0 0 12px 0; font-size:14px;">
+<p style="margin:0 0 24px 0; font-size:14px;">
 If you have any questions or need assistance with the booking, kindly coordinate with 
-<strong>Adnan Ahmed</strong> at 
-<a href="mailto:adnan.ahmed2@lemeridien.com">adnan.ahmed2@lemeridien.com</a> 
+Adnan Ahmed at <a href="mailto:adnan.ahmed2@lemeridien.com">adnan.ahmed2@lemeridien.com</a> 
 or call +966 504940516.
 </p>
 
@@ -98,12 +96,12 @@ LinkedIn Page
 </p>
 
 <p style="margin:0 0 16px 0; font-size:14px;">
-Thank you, and we look forward to welcoming you in Saudi Arabia for the <strong>8th GPCA Research & Innovation Conference</strong>.
+Thank you, and we look forward to welcoming you in Saudi Arabia for the 8th GPCA Research & Innovation Conference.
 </p>
 
 <p style="margin:0; font-size:14px;">
 Best Regards,<br>
-<strong>GPCA Team</strong>
+GPCA Team
 </p>
 
 </div>
