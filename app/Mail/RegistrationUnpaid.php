@@ -303,6 +303,20 @@ class RegistrationUnpaid extends Mailable
                 return new Content(
                     markdown: 'emails.2026.ric.registration-unpaid',
                 );
+            } else if ($this->details['eventCategory'] == "RCC") {
+                if ($this->details['accessType'] == AccessTypes::CONFERENCE_ONLY->value) {
+                    return new Content(
+                        markdown: 'emails.2026.rcc.co.registration-unpaid',
+                    );
+                } else if ($this->details['accessType'] == AccessTypes::WORKSHOP_ONLY->value) {
+                    return new Content(
+                        markdown: 'emails.2026.rcc.wo.registration-unpaid',
+                    );
+                } else {
+                    return new Content(
+                        markdown: 'emails.2026.rcc.registration-unpaid',
+                    );
+                }
             }
         } else {
             return new Content(

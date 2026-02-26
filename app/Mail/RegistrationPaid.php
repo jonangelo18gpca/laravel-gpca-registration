@@ -308,7 +308,24 @@ class RegistrationPaid extends Mailable
                     markdown: 'emails.2026.ric.registration-paid',
                 );
             }
-        } else {
+
+            else if ($this->details['eventCategory'] == "RCC") {
+                if ($this->details['accessType'] == AccessTypes::CONFERENCE_ONLY->value) {
+                    return new Content(
+                        markdown: 'emails.2026.rcc.co.registration-paid',
+                    );
+                } else if ($this->details['accessType'] == AccessTypes::WORKSHOP_ONLY->value) {
+                    return new Content(
+                        markdown: 'emails.2026.rcc.wo.registration-paid',
+                    );
+                } else {
+                    return new Content(
+                        markdown: 'emails.2026.rcc.registration-paid',
+                    );
+                }
+        } 
+        }
+        else {
             return new Content(
                 markdown: 'emails.registration-paid',
             );

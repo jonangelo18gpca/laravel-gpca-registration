@@ -249,6 +249,20 @@ class RegistrationFree extends Mailable
                 return new Content(
                     markdown: 'emails.2026.ric.registration-free',
                 );
+            } else if ($this->details['eventCategory'] == "RCC") {
+                if ($this->details['accessType'] == AccessTypes::CONFERENCE_ONLY->value) {
+                    return new Content(
+                        markdown: 'emails.2026.rcc.co.registration-free',
+                    );
+                } else if ($this->details['accessType'] == AccessTypes::WORKSHOP_ONLY->value) {
+                    return new Content(
+                        markdown: 'emails.2026.rcc.wo.registration-free',
+                    );
+                } else {
+                    return new Content(
+                        markdown: 'emails.2026.rcc.registration-free',
+                    );
+                }
             }
         } else {
             return new Content(
