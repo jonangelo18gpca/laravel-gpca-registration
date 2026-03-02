@@ -8,9 +8,23 @@ use App\Models\PromoCode as PromoCodes;
 use App\Models\EventRegistrationType as EventRegistrationTypes;
 use App\Models\PromoCodeAddtionalBadgeType as PromoCodeAddtionalBadgeTypes;
 
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
+
 class PromoCode extends Component
 {
+    use WithFileUploads;
+
     public $event, $promoCodesPercentPricesArr = array(), $promoCodesFixedRatesArr = array(), $registrationTypes;
+
+    public $importFile;
+    public $importPreviewData = [];
+    public $importDuplicates = [];
+    public $importReady = false;
+
+    public $showImportConfirm = false;
+    public $duplicateCount = 0;
+    public $newCount = 0;
 
     // Add promo code
     public $promo_code, $description, $badge_type, $discount_type, $discount, $number_of_codes, $total_usage, $validity, $new_rate, $new_rate_description;
@@ -25,7 +39,7 @@ class PromoCode extends Component
     public $updateRegistrationTypes = false;
 
 
-    protected $listeners = ['updatePromoCodeConfirmed' => 'updatePromoCode', 'addPromoCodeConfirmed' => 'addPromoCode'];
+    protected $listeners = ['updatePromoCodeConfirmed' => 'updatePromoCode', 'addPromoCodeConfirmed' => 'addPromoCode', 'confirmImportPromoCodes' => 'importPromoCodesConfirmed'];
 
     public function mount($eventCategory, $eventId)
     {
@@ -260,8 +274,8 @@ class PromoCode extends Component
         $this->editRegTypeShowPC = PromoCodes::where('id', $promoCodeId)->where('event_id', $this->event->id)->value('promo_code');
         $addRegTypes = PromoCodeAddtionalBadgeTypes::where('promo_code_id', $promoCodeId)->get();
 
-        if($addRegTypes->isNotEmpty()){
-            foreach($addRegTypes as $regType){
+        if ($addRegTypes->isNotEmpty()) {
+            foreach ($addRegTypes as $regType) {
                 array_push($this->editPromoCodeRegistrationTypesArr, [
                     'id' => $regType->id,
                     'badgeType' => $regType->badge_type,
@@ -280,7 +294,8 @@ class PromoCode extends Component
         $this->editPromoCodeRegistrationTypesArr = array();
     }
 
-    public function addRegistrationType(){
+    public function addRegistrationType()
+    {
         $this->validate([
             'addRegType' => 'required',
         ]);
@@ -302,13 +317,14 @@ class PromoCode extends Component
         $this->getPromoCodeForFixedRate();
     }
 
-    public function deleteRegistrationType($additionalRegTypeId){
+    public function deleteRegistrationType($additionalRegTypeId)
+    {
         PromoCodeAddtionalBadgeTypes::find($additionalRegTypeId)->delete();
 
         $regTypeArrTemp = array();
 
-        foreach($this->editPromoCodeRegistrationTypesArr as $regType){
-            if($regType['id'] != $additionalRegTypeId){
+        foreach ($this->editPromoCodeRegistrationTypesArr as $regType) {
+            if ($regType['id'] != $additionalRegTypeId) {
                 array_push($regTypeArrTemp, [
                     'id' => $regType['id'],
                     'badgeType' => $regType['badgeType'],
@@ -335,8 +351,8 @@ class PromoCode extends Component
                 $addRegTypesArr = array();
                 $addtionalRegistrationTypes = PromoCodeAddtionalBadgeTypes::where('event_id', $this->event->id)->where('promo_code_id', $promoCodesPercentPrice->id)->get();
 
-                if($addtionalRegistrationTypes->isNotEmpty()){
-                    foreach($addtionalRegistrationTypes as $addtionalRegistrationType){
+                if ($addtionalRegistrationTypes->isNotEmpty()) {
+                    foreach ($addtionalRegistrationTypes as $addtionalRegistrationType) {
                         array_push($addRegTypesArr, [
                             'addRegTypeId' => $addtionalRegistrationType->id,
                             'badgeType' => $addtionalRegistrationType->badge_type,
@@ -373,8 +389,8 @@ class PromoCode extends Component
                 $addRegTypesArr = array();
                 $addtionalRegistrationTypes = PromoCodeAddtionalBadgeTypes::where('event_id', $this->event->id)->where('promo_code_id', $promoCodesFixedRate->id)->get();
 
-                if($addtionalRegistrationTypes->isNotEmpty()){
-                    foreach($addtionalRegistrationTypes as $addtionalRegistrationType){
+                if ($addtionalRegistrationTypes->isNotEmpty()) {
+                    foreach ($addtionalRegistrationTypes as $addtionalRegistrationType) {
                         array_push($addRegTypesArr, [
                             'addRegTypeId' => $addtionalRegistrationType->id,
                             'badgeType' => $addtionalRegistrationType->badge_type,
@@ -401,4 +417,188 @@ class PromoCode extends Component
         $this->promoCodesFixedRatesArr = $promoCodesFixedRatesArrTemp;
         $promoCodesFixedRatesArrTemp = array();
     }
+
+
+
+    public function importPromoCodesConfirmed()
+    {
+        $this->validate([
+            'importFile' => 'required|file|mimes:csv,txt|max:5120',
+        ]);
+
+        $path = $this->importFile->getRealPath();
+        $handle = fopen($path, 'r');
+
+        if (!$handle) {
+            session()->flash('error', 'Cannot read CSV');
+            return;
+        }
+
+        $header = fgetcsv($handle);
+        $header = array_map(fn($h) => strtolower(trim($h)), $header);
+        $index = array_flip($header);
+
+        DB::beginTransaction();
+
+        try {
+
+            while (($row = fgetcsv($handle)) !== false) {
+
+                if (empty($row[0])) continue;
+
+                $promoCode = trim($row[$index['promo_code']]);
+
+                $badgeTypesRaw = trim($row[$index['badgetype']]);
+
+                // split VIP/Delegate/Speaker
+                $badgeTypes = explode('/', $badgeTypesRaw);
+
+                $mainBadgeType = trim($badgeTypes[0]);
+
+                $additionalBadgeTypes = array_slice($badgeTypes, 1);
+
+                $description = $row[$index['description']];
+                $newRateDescription = $row[$index['new_rate_description']];
+                $discountType = strtolower($row[$index['discount_type']]);
+                $discount = (float)$row[$index['discount']];
+                $newRate = (float)$row[$index['new_rate']];
+                $numberOfCodes = (int)$row[$index['number_of_codes']];
+                $validityRaw = trim($row[$index['validity']]);
+
+                $validity = null;
+
+                if (!empty($validityRaw)) {
+
+                    // Handle Excel format DD/MM/YYYY
+                    if (preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $validityRaw)) {
+
+                        $parts = explode('/', $validityRaw);
+
+                        $validity = $parts[2] . '-' . $parts[1] . '-' . $parts[0];
+                    } else {
+
+                        // fallback
+                        $validity = date('Y-m-d', strtotime($validityRaw));
+                    }
+                }
+
+                if ($discountType == 'fixed') {
+                    $discount = 0;
+                } else {
+                    $newRate = 0;
+                    $newRateDescription = 'N/A';
+                }
+
+                $promo = PromoCodes::create([
+                    'event_id' => $this->event->id,
+                    'event_category' => $this->event->category,
+                    'active' => true,
+                    'description' => $description,
+                    'badge_type' => $mainBadgeType,
+                    'promo_code' => $promoCode,
+                    'discount_type' => $discountType,
+                    'discount' => $discount,
+                    'new_rate' => $newRate,
+                    'new_rate_description' => $newRateDescription,
+                    'total_usage' => 0,
+                    'number_of_codes' => $numberOfCodes,
+                    'validity' => $validity,
+                ]);
+
+                // insert additional badge types
+                foreach ($additionalBadgeTypes as $badge) {
+
+                    PromoCodeAddtionalBadgeTypes::create([
+                        'event_id' => $this->event->id,
+                        'promo_code_id' => $promo->id,
+                        'badge_type' => trim($badge)
+                    ]);
+                }
+            }
+            fclose($handle);
+
+            DB::commit();
+
+            $this->importFile = null;
+
+            $this->getPromoCodesForPercentPrice();
+            $this->getPromoCodeForFixedRate();
+
+            session()->flash('success', 'Import successful');
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            session()->flash('error', $e->getMessage());
+        }
+    }
+
+public function previewImport()
+{
+    if (!$this->importFile) {
+
+        session()->flash('error', 'Please wait until file upload completes.');
+
+        return;
+    }
+
+    $path = $this->importFile->getRealPath();
+
+    if (!$path) {
+
+        session()->flash('error', 'File upload not ready yet.');
+
+        return;
+    }
+
+    $handle = fopen($path, 'r');
+
+    if (!$handle) {
+
+        session()->flash('error', 'Cannot read file.');
+
+        return;
+    }
+
+    $header = fgetcsv($handle);
+
+    $header = array_map('strtolower', $header);
+
+    $index = array_flip($header);
+
+    $duplicates = 0;
+    $new = 0;
+
+    while (($row = fgetcsv($handle)) !== false) {
+
+        if(empty($row[0])) continue;
+
+        $code = trim($row[$index['promo_code']]);
+
+        $exists = PromoCodes::where('event_id', $this->event->id)
+            ->where('event_category', $this->event->category)
+            ->where('promo_code', $code)
+            ->exists();
+
+        if($exists)
+            $duplicates++;
+        else
+            $new++;
+    }
+
+    fclose($handle);
+
+    $this->duplicateCount = $duplicates;
+    $this->newCount = $new;
+
+    $this->showImportConfirm = true;
+}
+
+
+public function confirmImport()
+{
+    $this->showImportConfirm = false;
+
+    $this->importPromoCodesConfirmed();
+}
 }

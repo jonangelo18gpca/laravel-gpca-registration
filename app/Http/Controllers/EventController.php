@@ -2246,4 +2246,60 @@ class EventController extends Controller
             abort(404, 'The URL is incorrect');
         }
     }
+public function downloadPromoCodeTemplate($eventCategory, $eventId)
+{
+    $filename = "promo_codes_template.csv";
+
+    $headers = [
+        "Content-type" => "text/csv",
+        "Content-Disposition" => "attachment; filename=$filename",
+    ];
+
+    $callback = function() {
+
+        $file = fopen('php://output', 'w');
+
+        fputcsv($file, [
+            'promo_code',
+            'badgeType',
+            'description',
+            'new_rate_description',
+            'discount_type',
+            'discount',
+            'new_rate',
+            'number_of_codes',
+            'validity'
+        ]);
+
+        // percentage example
+        fputcsv($file, [
+            'FOCVIP24',
+            'VIP/Delegate',
+            'Free of charge VIP',
+            'N/A',
+            'percentage',
+            '100',
+            '0',
+            '100',
+            '2026-12-31'
+        ]);
+
+        // fixed example
+        fputcsv($file, [
+            'VIPFIXED24',
+            'VIP/Delegate',
+            'VIP fixed rate',
+            'VIP fixed rate',
+            'fixed',
+            '0',
+            '200',
+            '50',
+            '2026-12-31'
+        ]);
+
+        fclose($file);
+    };
+
+    return response()->stream($callback, 200, $headers);
+}
 }

@@ -1860,12 +1860,12 @@ class RegistrationController extends Controller
             if ($eventCategory == "RCCA") {
                 if ($finalData['paymentStatus'] == "unpaid") {
                     $pdf = Pdf::loadView('admin.events.transactions.invoices.rcca.unpaid', $finalData)
-                    ->setOption('header-html', view('admin.events.transactions.invoices.header')->render())
-                    ->setOption('footer-html', view('admin.events.transactions.invoices.footer')->render());
+                        ->setOption('header-html', view('admin.events.transactions.invoices.header')->render())
+                        ->setOption('footer-html', view('admin.events.transactions.invoices.footer')->render());
                 } else {
                     $pdf = Pdf::loadView('admin.events.transactions.invoices.rcca.paid', $finalData)
-                    ->setOption('header-html', view('admin.events.transactions.invoices.header')->render())
-                    ->setOption('footer-html', view('admin.events.transactions.invoices.footer')->render());
+                        ->setOption('header-html', view('admin.events.transactions.invoices.header')->render())
+                        ->setOption('footer-html', view('admin.events.transactions.invoices.footer')->render());
                 }
             } else if ($eventCategory == "SCEA") {
                 if ($finalData['paymentStatus'] == "unpaid") {
@@ -4104,12 +4104,27 @@ class RegistrationController extends Controller
                 $bankDetails = config('app.bankDetails.DEFAULT');
             }
 
+            // if ($eventCategory == "GLF" || $eventCategory == "DFCLW1") {
+            //     $eventFormattedData = Carbon::parse($event->event_end_date)->format('j F Y');
+            // } else if ($eventCategory == "PSW" && $event->year == "2025") {
+            //     $eventFormattedData = Carbon::parse($event->event_start_date)->format('j F') . ' - ' . Carbon::parse($event->event_end_date)->format('j F Y');
+            // } else {
+            //     $eventFormattedData = Carbon::parse($event->event_start_date)->format('j') . '-' . Carbon::parse($event->event_end_date)->format('j F Y');
+            // }
+
+            $start = Carbon::parse($event->event_start_date);
+            $end   = Carbon::parse($event->event_end_date);
+
             if ($eventCategory == "GLF" || $eventCategory == "DFCLW1") {
-                $eventFormattedData = Carbon::parse($event->event_end_date)->format('j F Y');
+                $eventFormattedData = $end->format('j F Y');
             } else if ($eventCategory == "PSW" && $event->year == "2025") {
-                $eventFormattedData = Carbon::parse($event->event_start_date)->format('j F') . ' - ' . Carbon::parse($event->event_end_date)->format('j F Y');
+                $eventFormattedData = $start->format('j F') . ' - ' . $end->format('j F Y');
             } else {
-                $eventFormattedData = Carbon::parse($event->event_start_date)->format('j') . '-' . Carbon::parse($event->event_end_date)->format('j F Y');
+                if ($start->format('F Y') === $end->format('F Y')) {
+                    $eventFormattedData = $start->format('j') . '–' . $end->format('j F Y');
+                } else {
+                    $eventFormattedData = $start->format('j F') . ' – ' . $end->format('j F Y');
+                }
             }
 
             if ($mainDelegate->alternative_company_name == null) {
@@ -4958,7 +4973,7 @@ class RegistrationController extends Controller
                 if ($mainDelegate->delegate_cancelled != null) {
                 }
 
-                if($mainDelegate->alternative_company_name != null){
+                if ($mainDelegate->alternative_company_name != null) {
                     $finalCompanyName = $mainDelegate->alternative_company_name;
                 } else {
                     $finalCompanyName = $mainDelegate->company_name;
@@ -6180,7 +6195,7 @@ class RegistrationController extends Controller
 
                 $discountPrice = 0.0;
                 $netAMount = $mainParticipant->unit_price;
-                
+
                 $entryFormId = RccAwardsDocument::where('event_id', $eventId)->where('participant_id', $mainParticipant->id)->where('document_type', 'entryForm')->value('id');
 
                 $getSupportingDocumentFiles = RccAwardsDocument::where('event_id', $eventId)->where('participant_id', $mainParticipant->id)->where('document_type', 'supportingDocument')->get();

@@ -25,6 +25,15 @@ class EventRegistrationType extends Component
         $this->event = Events::where('id', $eventId)->where('category', $eventCategory)->first();
         $this->eventCategory = $eventCategory;
         $this->eventId = $eventId;
+
+
+
+        // ✅ ADD THESE DEFAULTS
+        $this->badgeFooterFrontBGColor = '#000000';
+        $this->badgeFooterFrontTextColor = '#ffffff';
+
+        $this->badgeFooterBackBGColor = '#000000';
+        $this->badgeFooterBackTextColor = '#ffffff';
     }
 
     public function render()
@@ -54,8 +63,9 @@ class EventRegistrationType extends Component
         ]);
     }
 
-    
-    public function addRegistrationType(){
+
+    public function addRegistrationType()
+    {
         EventRegistrationTypes::create([
             'event_id' => $this->eventId,
             'event_category' => $this->eventCategory,
@@ -71,11 +81,11 @@ class EventRegistrationType extends Component
 
         $this->registrationType = null;
         $this->badgeFooterFrontName = null;
-        $this->badgeFooterFrontBGColor = null;
-        $this->badgeFooterFrontTextColor = null;
+        $this->badgeFooterFrontBGColor = '#000000';
+        $this->badgeFooterFrontTextColor = '#ffffff';
         $this->badgeFooterBackName = null;
-        $this->badgeFooterBackBGColor = null;
-        $this->badgeFooterBackTextColor = null;
+        $this->badgeFooterBackBGColor = '#000000';
+        $this->badgeFooterBackTextColor = '#ffffff';
 
         $this->dispatchBrowserEvent('swal:add-registration-type', [
             'type' => 'success',
@@ -108,7 +118,8 @@ class EventRegistrationType extends Component
         $this->updateRegistrationType = true;
     }
 
-    public function cancelEditRegistrationType(){
+    public function cancelEditRegistrationType()
+    {
         $this->registrationType = null;
         $this->badgeFooterFrontName = null;
         $this->badgeFooterFrontBGColor = null;
@@ -120,7 +131,8 @@ class EventRegistrationType extends Component
         $this->updateRegistrationType = false;
     }
 
-    public function updateRegistrationTypeConfirmation(){
+    public function updateRegistrationTypeConfirmation()
+    {
         $this->validate(
             [
                 'registrationType' => 'required',
@@ -141,7 +153,8 @@ class EventRegistrationType extends Component
     }
 
 
-    public function updateRegistrationType(){
+    public function updateRegistrationType()
+    {
         EventRegistrationTypes::find($this->registrationTypeId)->fill([
             'registration_type' => $this->registrationType,
             'badge_footer_front_name' => $this->badgeFooterFrontName,
@@ -169,7 +182,8 @@ class EventRegistrationType extends Component
         ]);
     }
 
-    public function showSampleBadge($registrationTypeId){
+    public function showSampleBadge($registrationTypeId)
+    {
         $registrationType = EventRegistrationTypes::findOrFail($registrationTypeId);
 
         $this->badgeViewFFText = $registrationType->badge_footer_front_name;
@@ -184,7 +198,8 @@ class EventRegistrationType extends Component
         $this->badgeView = true;
     }
 
-    public function closeSampleBadge(){
+    public function closeSampleBadge()
+    {
         $this->badgeViewFFText = null;
         $this->badgeViewFBText = null;
 
@@ -196,4 +211,18 @@ class EventRegistrationType extends Component
 
         $this->badgeView = false;
     }
+
+
+    public function updatedRegistrationType($value)
+{
+    // Only auto-fill if empty to avoid overwriting manual edits
+
+    if (empty($this->badgeFooterFrontName)) {
+        $this->badgeFooterFrontName = $value;
+    }
+
+    if (empty($this->badgeFooterBackName)) {
+        $this->badgeFooterBackName = $value;
+    }
+}
 }

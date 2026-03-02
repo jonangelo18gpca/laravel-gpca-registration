@@ -9,13 +9,70 @@
 
 
         <div class="shadow-lg my-5 pt-5 bg-white rounded-md" style="margin-left: 320px; ">
-            
-            <div class="mb-5">
+
+
+            {{-- previous-code commented by jon --}}
+            {{-- <div class="mb-5">
                 <a href="{{ route('admin.event.promo-codes.export.data', ['eventCategory' => $event->category, 'eventId' => $event->id]) }}"
                     target="_blank"
                     class="bg-green-600 hover:bg-green-700 text-white py-2 px-5 rounded-md text-lg text-center">Export
                     Data to Excel</a>
+            </div> --}}
+
+
+
+            <div class="mb-5 flex items-center gap-3">
+
+
+                <a href="{{ route('admin.event.promo-codes.export.data', ['eventCategory' => $event->category, 'eventId' => $event->id]) }}"
+                    target="_blank"
+                    class="bg-green-600 hover:bg-green-700 text-white py-2 px-5 rounded-md text-lg text-center">
+                    Export Data to Excel
+                </a>
+
+
+                <input type="file" wire:model="importFile" accept=".csv" class="border rounded-md p-2 text-sm" />
+
+ <button
+    wire:click="previewImport"
+    wire:loading.attr="disabled"
+    wire:target="importFile,previewImport"
+    class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-5 rounded-md text-lg">
+
+    <span wire:loading.remove wire:target="importFile,previewImport">
+        Import CSV
+    </span>
+
+    <span wire:loading wire:target="importFile">
+        Uploading...
+    </span>
+
+    <span wire:loading wire:target="previewImport">
+        Checking...
+    </span>
+
+</button>
+
+                <a href="{{ route('admin.event.promo-codes.template', [
+                    'eventCategory' => $event->category,
+                    'eventId' => $event->id,
+                ]) }}"
+                    class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-5 rounded-md text-lg text-center">
+                    Download CSV Template
+                </a>
+
+
+
+
             </div>
+
+            @if (session()->has('success'))
+                <div class="text-green-600">{{ session('success') }}</div>
+            @endif
+
+            @if (session()->has('error'))
+                <div class="text-red-600">{{ session('error') }}</div>
+            @endif
 
             <h1 class="text-center text-2xl bg-registrationPrimaryColor text-white py-4">Promo codes for fixed rate</h1>
             <div class="grid grid-cols-11 gap-5 p-4 px-4 text-center items-center bg-blue-600 text-white ">
@@ -44,14 +101,14 @@
                         <div class="col-span-1 break-words">
                             {{ $promoCodesFixedRate['badge_type'] }}
                             <br>
-                            @if(!empty($promoCodesFixedRate['additionalBadgeType']))
-                                @foreach($promoCodesFixedRate['additionalBadgeType'] as $regType)
+                            @if (!empty($promoCodesFixedRate['additionalBadgeType']))
+                                @foreach ($promoCodesFixedRate['additionalBadgeType'] as $regType)
                                     {{ $regType['badgeType'] }} <br>
                                 @endforeach
                             @endif
                         </div>
                         <div class="col-span-1 break-words">
-                                $ {{ number_format($promoCodesFixedRate['new_rate'], 2, '.', ',') }}
+                            $ {{ number_format($promoCodesFixedRate['new_rate'], 2, '.', ',') }}
                         </div>
                         <div class="col-span-1 break-words">{{ $promoCodesFixedRate['new_rate_description'] }}</div>
                         <div class="col-span-1 break-words">{{ $promoCodesFixedRate['description'] }}</div>
@@ -78,7 +135,7 @@
                                 <i class="fa-solid fa-pen-to-square"></i>
                                 Details
                             </div>
-                            
+
                             <div wire:click="showEditRegistrationTypes({{ $promoCodesFixedRate['id'] }})"
                                 class="cursor-pointer hover:text-teal-600 text-teal-500 mt-1">
                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -92,7 +149,8 @@
 
 
         <div class="shadow-lg my-5 pt-5 bg-white rounded-md" style="margin-left: 320px; ">
-            <h1 class="text-center text-2xl bg-registrationPrimaryColor text-white py-4">Promo codes for discounted price
+            <h1 class="text-center text-2xl bg-registrationPrimaryColor text-white py-4">Promo codes for discounted
+                price
                 & percentage</h1>
             <div class="grid grid-cols-11 gap-5 p-4 px-4 text-center items-center bg-blue-600 text-white ">
                 <div class="col-span-1 break-words">Code</div>
@@ -119,8 +177,8 @@
                         <div class="col-span-1 break-words">
                             {{ $promoCodesPercentPrice['badge_type'] }}
                             <br>
-                            @if(!empty($promoCodesPercentPrice['additionalBadgeType']))
-                                @foreach($promoCodesPercentPrice['additionalBadgeType'] as $regType)
+                            @if (!empty($promoCodesPercentPrice['additionalBadgeType']))
+                                @foreach ($promoCodesPercentPrice['additionalBadgeType'] as $regType)
                                     {{ $regType['badgeType'] }} <br>
                                 @endforeach
                             @endif
@@ -156,7 +214,7 @@
                                 <i class="fa-solid fa-pen-to-square"></i>
                                 Details
                             </div>
-                            
+
                             <div wire:click="showEditRegistrationTypes({{ $promoCodesPercentPrice['id'] }})"
                                 class="cursor-pointer hover:text-teal-600 text-teal-500 mt-1">
                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -176,4 +234,44 @@
             @include('livewire.admin.events.promo-codes.edit_registration_types')
         @endif
     </div>
+
+
+
+@if($showImportConfirm)
+
+<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+
+    <div class="bg-white p-6 rounded shadow-lg w-96">
+
+        <h2 class="text-xl font-bold mb-4">Confirm Import</h2>
+
+        <p class="mb-4">
+            New Codes: <strong>{{ $newCount }}</strong><br>
+            Duplicate Codes: <strong>{{ $duplicateCount }}</strong>
+        </p>
+
+        <p class="mb-4">
+            Are you sure you want to import?
+        </p>
+
+        <div class="flex justify-end gap-3">
+
+            <button wire:click="$set('showImportConfirm', false)"
+                class="bg-gray-400 text-white px-4 py-2 rounded">
+                Cancel
+            </button>
+
+            <button wire:click="confirmImport"
+                class="bg-blue-600 text-white px-4 py-2 rounded">
+                Yes Import
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+@endif
+
 </div>

@@ -30,10 +30,10 @@ Route::prefix('admin')->group(function () {
             Route::get('/add', [EventController::class, 'addEventView'])->name('admin.event.add.view');
             Route::post('/add', [EventController::class, 'addEvent'])->name('admin.event.add.post');
 
-            Route::prefix('{eventCategory}/{eventId}')->group(function (){
+            Route::prefix('{eventCategory}/{eventId}')->group(function () {
                 Route::get('/edit', [EventController::class, 'eventEditView'])->name('admin.event.edit.view');
                 Route::post('/edit', [EventController::class, 'updateEvent'])->name('admin.event.edit.post');
-                
+
                 Route::post('/update-status/{eventStatus}', [EventController::class, 'updateEventStatus'])->name('admin.event.update.status.post');
 
                 Route::get('/dashboard', [EventController::class, 'eventDashboardView'])->name('admin.event.dashboard.view');
@@ -42,8 +42,12 @@ Route::prefix('admin')->group(function () {
                 Route::get('/delegate-fees', [EventController::class, 'eventDelegateFeesView'])->name('admin.event.delegate-fees.view');
                 Route::get('/promo-code', [EventController::class, 'eventPromoCodeView'])->name('admin.event.promo-codes.view');
                 Route::get('/promo-code/export', [EventController::class, 'exportListOfPromoCodes'])->name('admin.event.promo-codes.export.data');
-                Route::prefix('registrant')->group(function (){
-                Route::get('/', [RegistrationController::class, 'eventRegistrantsView'])->name('admin.event.registrants.view');
+                
+                Route::get('/promo-code/template', [EventController::class, 'downloadPromoCodeTemplate'])
+                    ->name('admin.event.promo-codes.template');
+
+                Route::prefix('registrant')->group(function () {
+                    Route::get('/', [RegistrationController::class, 'eventRegistrantsView'])->name('admin.event.registrants.view');
                     Route::get('/export', [RegistrationController::class, 'registrantsExportData'])->name('admin.event.registrants.exportData');
                     Route::get('/{registrantId}', [RegistrationController::class, 'registrantDetailView'])->name('admin.event.registrants.detail.view');
                     Route::get('/{registrantId}/view-invoice', [RegistrationController::class, 'generateAdminInvoice'])->name('admin.event.registrants.view.invoice');
@@ -69,7 +73,7 @@ Route::prefix('admin')->group(function () {
                     Route::get('/categorized', [DelegateController::class, 'scannedDelegateListCategorizedView'])->name('admin.scanned.delegate.categorized.list.view');
                 });
                 // Route::get('/onsite/register/', [RegistrationController::class, 'eventOnsiteRegistrationView'])->name('admin.event.onsite.register.view');
-                
+
                 Route::get('/scan-qr', [DelegateController::class, 'scanQrView'])->name('scan.qr');
             });
         });
@@ -77,7 +81,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/member', [MemberController::class, 'manageMemberView'])->name('admin.member.view');
         Route::get('/member/export', [MemberController::class, 'exportListOfMembers'])->name('admin.member.export.data');
         Route::get('/delegate', [DelegateController::class, 'manageDelegateView'])->name('admin.delegate.view');
-
     });
 
 
@@ -85,7 +88,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AdminController::class, 'login'])->name('admin.login.post');
 });
 
-Route::prefix('register/{eventYear}/{eventCategory}/{eventId}')->group(function (){
+Route::prefix('register/{eventYear}/{eventCategory}/{eventId}')->group(function () {
     Route::get('/', [RegistrationController::class, 'registrationView'])->name('register.view');
     Route::get('/otp', [RegistrationController::class, 'registrationOTPView'])->name('register.otp.view');
     Route::get('/{mainDelegateId}/{status}/loading', [RegistrationController::class, 'registrationLoadingView'])->name('register.loading.view');
@@ -95,7 +98,7 @@ Route::prefix('register/{eventYear}/{eventCategory}/{eventId}')->group(function 
 
 
 
-Route::prefix('event/{eventCategory}/{eventId}/digital-helper')->group(function (){
+Route::prefix('event/{eventCategory}/{eventId}/digital-helper')->group(function () {
     Route::get('/', [DelegateController::class, 'digitalHelper'])->name('digital.helper.view');
     Route::get('/faq', [DelegateController::class, 'digitalHelperFAQ'])->name('digital.helper.faq.view');
 });

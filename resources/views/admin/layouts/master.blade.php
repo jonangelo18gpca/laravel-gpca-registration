@@ -109,6 +109,9 @@
 
     <script src="{{ asset('js/manageEvents/imagePreview.js') }}"></script>
     <script src="{{ asset('js/allswal.js') }}"></script>
+
+
+    
 </body>
 
 </html>
