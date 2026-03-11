@@ -323,7 +323,12 @@ class RegistrationPaid extends Mailable
                         markdown: 'emails.2026.rcc.registration-paid',
                     );
                 }
-        } 
+        }  else if ($this->details['eventCategory'] == "AF") {
+                return new Content(
+                    markdown: 'emails.2026.af.registration-paid',
+                );
+            }
+
         }
         else {
             return new Content(

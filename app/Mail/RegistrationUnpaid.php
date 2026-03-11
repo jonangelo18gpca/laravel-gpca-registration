@@ -318,6 +318,14 @@ class RegistrationUnpaid extends Mailable
                     );
                 }
             }
+
+             else if ($this->details['eventCategory'] == "AF") {
+                return new Content(
+                    markdown: 'emails.2026.af.registration-unpaid',
+                );
+            }
+
+            
         } else {
             return new Content(
                 markdown: 'emails.registration-unpaid',

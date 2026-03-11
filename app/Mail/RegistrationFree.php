@@ -263,6 +263,12 @@ class RegistrationFree extends Mailable
                         markdown: 'emails.2026.rcc.registration-free',
                     );
                 }
+            } else if ($this->details['eventCategory'] == "AF") {
+                return new Content(
+                    markdown: 'emails.2026.af.registration-free',
+                );
+
+                
             }
         } else {
             return new Content(
