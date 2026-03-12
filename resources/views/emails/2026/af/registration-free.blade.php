@@ -8,11 +8,10 @@
     {{ $details['eventDates'] }} at the {{ $details['eventLocation'] }}. By registering as a delegate, you are
     subject to the terms and conditions outlined in the invoice.</p>
 
-<p class="sub" style="margin-top: 15px;"><strong>Please note that your registration is confirmed, and summary of your booking confirmation is given below.</strong></p>
+<p class="sub" style="margin-top: 15px;"><strong>Please note that your registration is subject to confirmation from one of our team members. We will review the registration details you've provided to ensure we have the accurate information to make the necessary badge arrangements.</strong></p>
 
-<p class="sub" style="margin-top: 15px;">Your registration details as follows:</p>
+<p class="sub" style="margin-top: 15px;"><strong>Your registration details as follows:</strong></p>
 
-<p class="sub" style="margin-top: 20px;"><strong>Delegate Information</strong></p>
 <p class="sub">Full name: {{ $details['name'] }}</p>
 <p class="sub">Job title: {{ $details['jobTitle'] }}</p>
 <p class="sub">Company name: {{ $details['companyName'] }}</p>
