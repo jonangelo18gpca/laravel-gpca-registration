@@ -9,7 +9,7 @@ Dear {{ $details['name'] }},
 <p style="margin:0 0 12px 0; font-size:14px;">
 Thank you for registering to attend 
 <a href="{{ $details['eventLink'] }}" target="_blank">{{ $details['eventName'] }}</a>, 
-taking place from 18–19 May 2026 at the {{ $details['eventLocation'] }}.
+taking place from 16–17 September 2026 at the {{ $details['eventLocation'] }}.
 </p>
 
 <p style="margin:0 0 12px 0; font-size:14px;">
@@ -60,7 +60,7 @@ For any visa related inquiries, please contact our designated travel partner at 
 
 <p style="margin:0 0 6px 0; font-size:14px;">
 For hotel accommodation, please click the booking 
-<a href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1771313552687&key=GRP&app=resvlink&_branch_match_id=1552210776338362721&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXTywo0MtNLCrKzC8p0UvOz9UvSi3OyczLtgdK2ALZZSCOWmaKraG5uaGxobGpqZGZhbladmqlrXtQgFpdUWpaKlB3Xnp8UlF%2BeXFqka1rSnoqAChM6UVeAAAA">
+<a href="https://app.marriott.com/reslink?id=1771313421970&key=GRP&app=resvlink">
 link
 </a>
 to secure the special hotel rate at the Le Meridien, Al Khobar, Saudi Arabia.
