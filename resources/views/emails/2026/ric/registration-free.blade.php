@@ -41,7 +41,7 @@ Download Invoice
 <p style="margin:24px 0 24px 0; font-size:14px;">
 To request updates on your registration details, contact 
 <a href="mailto:jovelyn@gpca.org.ae">jovelyn@gpca.org.ae</a> 
-on or before <strong>17<sup>th</sup> April</strong> to ensure your badge information is accurate.
+on or before <strong>17<sup>th</sup> August</strong> to ensure your badge information is accurate.
 </p>
 
 <p style="margin:0 0 6px 0; font-weight:600; font-size:14px;">Collection of Badges</p>
