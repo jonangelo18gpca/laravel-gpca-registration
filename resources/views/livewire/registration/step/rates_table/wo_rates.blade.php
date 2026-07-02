@@ -1,6 +1,8 @@
 <div class="mb-4">
     @if ($event->category == 'SCC' && $event->year == '2025')
         <div class="text-2xl text-registrationPrimaryColor font-semibold">Gulf SQAS Workshop Pass</div>
+         @elseif ($event->category == 'RCC' && $event->year == '2026')
+        <div class="text-2xl text-registrationPrimaryColor font-semibold">Workshop & Process Safety by Frontline pass</div>
     @else
         <div class="text-2xl text-registrationPrimaryColor font-semibold">Workshop only</div>
     @endif
