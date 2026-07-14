@@ -1,9 +1,9 @@
 <x-mail::message>
 <p class="sub">Dear {{ $details['name'] }},</p>
 
-<p class="sub" style="margin-top: 15px;">Thank you for registering to attend the <a href="{{ $details['eventLink'] }}" target="_blank">{{ $details['eventName'] }}</a>, taking place from 29 Sept – 01 Oct 2026 in {{ $details['eventLocation'] }}. By registering as a delegate, you are subject to the terms and conditions outlined in the invoice.</p>
+<p class="sub" style="margin-top: 15px;">Thank you for registering for the Workshops & Process Safety by Frontline pass at the <a href="{{ $details['eventLink'] }}" target="_blank">{{ $details['eventName'] }}</a>, taking place on 29 September 2026 at the Jubail University City, Saudi Arabia. By registering as a delegate, your participation is subject to the terms and conditions outlined in your invoice.</p>
 
-<p class="sub" style="margin-top: 15px;">Your registration has been confirmed, and your delegate pass can be accessed during the <strong>workshop only</strong>. You will have access to the networking break and networking lunch. Please find below the summary of your booking confirmation.</p>
+<p class="sub" style="margin-top: 15px;">We are pleased to confirm your registration and successful payment for the event. Your delegate pass is valid for the <strong><i>Workshops & Process Safety by Frontline only. </i></strong>Please find below the summary of your booking details.</p>
 
 <p class="title" style="margin-top: 20px;">Your registration details as follows:</p>
 <p class="sub">Full name: {{  $details['name'] }}</p>
@@ -21,17 +21,22 @@ Download invoice
 </x-mail::button>
 @endif
 
-<p class="sub" style="margin-top: 15px;">To request updates on your registration details, contact <a href="mailto:jovelyn@gpca.org.ae">jovelyn@gpca.org.ae</a> before 28<sup>th</sup> August to ensure your badge information is accurate.</p>
+<p class="sub" style="margin-top: 15px;">To request any updates to your registration details, kindly contact <a href="mailto:jovelyn@gpca.org.ae">jovelyn@gpca.org.ae</a> on or before  28<sup>th</sup> August to ensure your badge information is accurate.</p>
 
-<p class="sub" style="margin-top: 20px; text-decoration: underline;"><strong>Collection of Badges</strong></p>
+<p class="sub" style="margin-top: 20px; text-decoration: underline;"><strong>Collection of badges</strong></p>
 <p class="sub" style="margin-top: 5px;">Upon arrival, please proceed to the registration desk located in the Foyer to collect your event badge. Kindly present your ID or email confirmation for verification.</p>
 
 <p class="sub" style="margin-top: 20px; text-decoration: underline;"><strong>Visa Inquiries</strong></p>
 <p class="sub" style="margin-top: 5px;">For any visa related inquiries, please contact our designated travel partner at Cozmo Travel. You may reach John Uytiongco at <a href="mailto:juytiongco@cozmotravel.com">juytiongco@cozmotravel.com</a> or call +971 4 406 5802. </p>
 
-<p class="sub" style="margin-top: 20px;">For any event-related queries, please reach out to the following team members:</p>
+<p class="sub" style="margin-top: 20px; text-decoration: underline;"><strong>Hotel Booking</strong></p>
+<p class="sub" style="margin-top: 5px;">For hotel accommodation, please click the booking <a href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1783493640009&key=GRP&app=resvlink&_branch_match_id=1593528681424671850&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXTywo0MtNLCrKzC8p0UvOz9UvSi0uy0wtN7IHytiCODmZedlqmSm2huYWxiaWxmYmBgYGlmrZqZW27kEBanVFqWmpQO156fFJRfnlxalFtq4p6akAvU7LkF8AAAA%3D"></a> link to secure the special hotel rate at the Courtyard by Marriot Jubail.</p>
+<p class="sub" style="margin-top: 10px;">If you have any questions or need assistance with the booking, kindly coordinate with Iftikhar Ahmed at <a href="mailto:iftikhar.ahmed@marriott.com">iftikhar.ahmed@marriott.com</a> or call +966 50 579 6752.</p>
 
-<p class="sub" style="margin-top: 10px;"><strong>Sponsorship, Exhibition, and Delegate Inquiries: </strong></p>
+<p class="sub" style="margin-top: 20px; text-decoration: underline;"><strong>Event-related Inquiries</strong></p>
+<p class="sub" style="margin-top: 20px;">For sponsorship, exhibition and delegate inquiries, please contact the team members listed below for assistance:</p>
+
+{{-- <p class="sub" style="margin-top: 10px;"><strong>Sponsorship, Exhibition, and Delegate Inquiries: </strong></p> --}}
 
 <ul class="event-list">
     <li style="margin-top: 5px;">Salman Khan and Jerry Rodrigues</li>
@@ -41,6 +46,9 @@ Download invoice
 
 <p class="sub" style="margin-top: 20px;">Stay updated on upcoming GPCA events and industry news by following our <a href="https://www.linkedin.com/company/gulf-petrochemicals-and-chemicals-association-gpca-/">LinkedIn Page</a>. You can also connect with us on our official social media accounts: <a href="https://twitter.com/GulfPetChem">Twitter</a>, <a href="https://www.instagram.com/gulfpetchem/">Instagram</a>, <a href="https://www.facebook.com/GulfPetChem?fref=ts">Facebook</a>, and <a href="https://www.youtube.com/user/GPCAorg">YouTube</a>. </p>
 
-<p class="sub" style="margin-top: 20px;">Best Regards,</p>
+<p class="sub" style="margin-top: 20px;">Thank you, and we look forward to welcoming you in Saudi Arabia for the 7<sup>th</sup> GPCA Responsible Care Conference. </p>
+
+
+<p class="sub" style="margin-top: 20px;">Kind Regards,</p>
 <p class="sub">GPCA Team</p>
 </x-mail::message>
