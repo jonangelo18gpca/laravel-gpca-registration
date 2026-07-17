@@ -47,11 +47,13 @@
     </div>
 
 
-    <div class="grid grid-cols-horizontalProgressBarGrid mt-5">
+    {{-- <div class="grid grid-cols-horizontalProgressBarGrid mt-5">
         <div class="text-sm md:text-base font-bold text-registrationPrimaryColor text-center flex justify-center">
             Registration type
         </div>
 
+        
+        
         <div class="w-full"></div>
 
 
@@ -78,6 +80,52 @@
 
 
             <div class="text-sm md:text-base font-bold text-registrationPrimaryColor text-center flex justify-center">
+                Payment details
+            </div>
+        @endif
+    </div> --}}
+
+
+
+    <div class="grid grid-cols-horizontalProgressBarGrid mt-5">
+        <div class="text-xs leading-tight md:text-base md:leading-normal font-bold text-registrationPrimaryColor text-center flex justify-center">
+            Registration type
+        </div>
+
+
+        <div class="w-full"></div>
+
+
+
+        <div class="text-xs leading-tight md:text-base md:leading-normal font-bold text-registrationPrimaryColor text-center flex justify-center">
+            Company details
+        </div>
+
+
+        <div class="w-full"></div>
+
+
+
+        <div class="text-xs leading-tight md:text-base md:leading-normal font-bold text-registrationPrimaryColor text-center flex justify-center">
+            Delegate details
+        </div>
+
+
+        <div class="w-full"></div>
+
+
+
+        <div class="text-xs leading-tight md:text-base md:leading-normal font-bold text-registrationPrimaryColor text-center flex justify-center">
+            Package summary
+        </div>
+
+
+        @if ($event->category != 'GLF' && $event->category != 'DFCLW1')
+            <div class="w-full"></div>
+
+
+
+            <div class="text-xs leading-tight md:text-base md:leading-normal font-bold text-registrationPrimaryColor text-center flex justify-center">
                 Payment details
             </div>
         @endif
