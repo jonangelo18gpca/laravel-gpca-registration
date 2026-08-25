@@ -190,13 +190,27 @@
 
    <div class="terms-and-condition">
        <p>Terms and Conditions</p>
-       <ol>
+       {{-- <ol>
           <li>Cancellations must be made in writing within 15 days of receiving the invoice. Cancellations received after this deadline will not be accepted, and the full invoice amount must be settled.</li>
             <li>If a delegate is unable to attend, a substitute delegate can be nominated at no additional cost. Please notify us in writing via email at forumregistration@gpca.org.ae with the full name, job title, email address, and phone number of both the registered and substitute delegates.</li>
             <li>If you have registered within the early bird time frame, payment must be completed before the deadline. Otherwise, the registration fee will automatically reflect the standard rate. </li>
             <li>Refund Policy
                 <p class="inside-li">4.1 If a delegate cancels their registration 31 days or more before the event, they will receive a refund of 75% of the paid registration fee.</p>
                 <p class="inside-li">4.2 If a delegate cancels their registration less than 31 days before the event, no refund will be issued.</p>
+            </li>
+       </ol> --}}
+
+
+        <ol>
+          <li>Cancellations must be made in writing within 15 days of receiving the invoice. Cancellations received after this deadline will not be accepted, and the full invoice amount must be settled.</li>
+            <li>If a delegate is unable to attend, a substitute delegate can be nominated at no additional cost. Please notify us in writing via email at forumregistration@gpca.org.ae with the full name, job title, email address, and phone number of both the registered and substitute delegates.</li>
+            <li>If a delegate is unable to attend due to a Force Majeure Event (including but not limited to war, armed conflict, government-imposed travel restrictions, or other circumstances beyond their reasonable control), GPCA may issue a non-refundable credit note, subject to written notification and supporting evidence.  Notification should be provided within 30 days prior to the event, where reasonably possible. The credit note will be valid for one year from the original event date (inclusive of the respective event if the dates are scheduled for beyond the 12 months).</li>
+            <li>If you have registered within the early bird time frame, payment must be completed before the deadline. Otherwise, the registration fee will automatically reflect the standard rate.</li>
+                 
+        
+            <li>Refund Policy
+                <p class="inside-li">5.1 If delegate/s cancelled their registration 31 days before the event, they will get a refund of 75% on the amount paid for the registration fee.</p>
+                <p class="inside-li">5.2 If delegate/s cancelled their registration less than 31 days before the event, NO refund will be given.</p>
             </li>
        </ol>
    </div>
