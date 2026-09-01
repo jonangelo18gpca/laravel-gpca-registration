@@ -40,6 +40,14 @@ Download invoice
 <p class="sub" style="margin-top: 5px;">Upon your arrival, please proceed to the registration desk located in the
     foyer to collect your event badge. Kindly present your ID or email confirmation for verification.</p>
 
+    
+<p class="sub" style="margin-top: 20px;"><strong>Hotel Accommodation</strong></p>
+
+<p class="sub" style="margin-top: 5px;">To avail of the special hotel rates, please click <a href="https://www.gpcaforum.com/travel-and-accommodation-2/" target="_blank">here</a> to view the list of available partner hotels.</p>
+
+<p class="sub" style="margin-top: 5px;">When making your accommodation inquiry or reservation, kindly indicate that you are attending the <a href="http://www.gpcaforum.com">20<sup>th</sup> Annual GPCA Forum</a> to ensure that the applicable special rates are extended to you.</p>
+
+
 <p class="sub" style="margin-top: 15px;">For any event related queries, please feel free to reach out to the
     following team members:</p>
 
@@ -71,4 +79,57 @@ Email:
 <p class="sub">GPCA Team</p>
 
 </div>
+
+{{-- 
+
+
+@php
+    $description = "Join {$details['eventName']} in Dubai on {$details['eventDates']}";
+    $shareUrl = $details['eventLink'];
+    $shareText = urlencode($description);
+
+
+echo <<<HTML
+<br><br>
+
+
+<div style="text-align:center;">
+
+<p style="font-size:12px; color:#5f615f;">
+<strong>Let others know you’re attending</strong>
+</p>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center">
+<tr>
+
+<td>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url={$shareUrl}">
+<img src="https://gpcachem.org/ie-images/ln_header.png" width="30" style="display:block; border:0;">
+</a>
+</td>
+
+<td width="10"></td>
+
+<td>
+<a href="https://x.com/intent/tweet?text={$shareText}&url={$shareUrl}">
+<img src="https://gpcachem.org/ie-images/x_header.png" width="30" style="display:block; border:0;">
+</a>
+</td>
+
+<td width="10"></td>
+
+<td>
+<a href="https://www.facebook.com/sharer/sharer.php?u={$shareUrl}">
+<img src="https://gpcachem.org/ie-images/fb_header.png" width="30" style="display:block; border:0;">
+</a>
+</td>
+
+</tr>
+</table>
+
+</div>
+HTML;
+@endphp --}}
+
+
 </x-mail::message>
