@@ -47,8 +47,7 @@ Download invoice
 <p class="sub" style="margin-top: 5px;">Upon your arrival, please proceed to the registration desk located in the
     foyer to collect your event badge. Kindly present your ID or email confirmation for verification.</p>
 
-
-    <p class="sub" style="margin-top: 20px;"><strong>Hotel Accommodation</strong></p>
+<p class="sub" style="margin-top: 20px;"><strong>Hotel Accommodation</strong></p>
 
 <p class="sub" style="margin-top: 5px;">To avail of the special hotel rates, please click <a href="https://www.gpcaforum.com/travel-and-accommodation-2/" target="_blank">here</a> to view the list of available partner hotels.</p>
 
