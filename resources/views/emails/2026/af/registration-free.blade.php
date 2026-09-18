@@ -1,6 +1,8 @@
 <x-mail::message>
 <div>
 
+<img src="https://gpcaregistration.com/storage/event/2026/banners/uP8RkFF0NhAir4aUk9cozCf0hdKKM2iXVpKhVbpP.png" width="600">
+
 <p class="sub" style="margin-top: 15px;">Dear {{ $details['name'] }},</p>
 
 <p class="sub" style="margin-top: 15px;">Thank you for registering to attend the <a
