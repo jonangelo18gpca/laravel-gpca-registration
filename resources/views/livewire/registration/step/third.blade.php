@@ -241,6 +241,33 @@
                 </div>
             </div>
         @endif
+
+
+
+        @if ($event->category == 'AF')
+            {{-- AF feature interests --}}
+            <div class="space-y-2 col-span-2">
+                <div class="text-registrationPrimaryColor">
+                    I am interested in the below features
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    @foreach (['Sustainability Pavilion', 'Startup Nexus', 'Women in Chemicals'] as $interestIndex => $interest)
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" wire:model.lazy="mainDelegateInterests"
+                                value="{{ $interest }}" id="mainDelegateAFOption-{{ $interestIndex }}">
+
+                            <label for="mainDelegateAFOption-{{ $interestIndex }}">
+                                {{ $interest }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
+
+
     </div>
 
     {{-- @if ($event->category == 'AF' && $event->year == '2023')
@@ -302,6 +329,10 @@
                                     @endif
                                 </p>
                             @endif
+
+
+
+
                         </div>
                         <div class="flex flex-col justify-between items-end">
                             <p class="text-registrationPrimaryColor font-bold">Delegate {{ $count }}</p>
