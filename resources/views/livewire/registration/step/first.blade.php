@@ -21,8 +21,8 @@
             @include('livewire.registration.step.rates_table.co_rates')
         @endif
 
-        {{-- <div class="mt-8"></div>
-        @include('livewire.registration.step.rates_table.fe_rates') --}}
+        <div class="mt-8"></div>
+        @include('livewire.registration.step.rates_table.fe_rates')
 
         @if ($event->category != 'AF')
             <div class="mt-8"></div>
@@ -53,7 +53,7 @@
         }
     </style>
 
-    @if ($event->category == 'AF')
+    @if ($event->category == 'AF2026')
         {{-- Youth promo modal --}}
         <div id="youth-promo-modal"
             class="hidden fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 sm:p-6" role="dialog"
