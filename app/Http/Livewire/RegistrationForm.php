@@ -153,7 +153,7 @@ class RegistrationForm extends Component
         $this->finalEventStartDate = Carbon::parse($this->event->event_start_date)->format('d M Y');
         $this->finalEventEndDate = Carbon::parse($this->event->event_end_date)->format('d M Y');
 
-        if ($this->event->category == "PSW" && $this->event->year == "2025") { 
+        if ($this->event->category == "PSW" && $this->event->year == "2025") {
             $this->eventFormattedDate = Carbon::parse($this->event->event_start_date)->format('j F') . ' - ' . Carbon::parse($this->event->event_end_date)->format('j F Y');
         } else {
             $this->eventFormattedDate = Carbon::parse($this->event->event_start_date)->format('j') . '-' . Carbon::parse($this->event->event_end_date)->format('j F Y');
@@ -602,6 +602,9 @@ class RegistrationForm extends Component
                     'jobTitle' => 'required',
                     'badgeType' => 'required',
                     'country' => 'required',
+                    'mainDelegateInterests' => $this->event->category === 'AF'
+                        ? 'required|array|min:1'
+                        : 'nullable|array',
                 ],
                 [
                     'firstName.required' => "First name is required",
@@ -613,6 +616,10 @@ class RegistrationForm extends Component
                     'jobTitle.required' => "Job title is required",
                     'badgeType.required' => "Registration type is required",
                     'country.required' => "Country is required",
+                    'mainDelegateInterests.required' => 'Please select at least one feature.',
+                    'mainDelegateInterests.array' => 'Please select a valid feature.',
+                    'mainDelegateInterests.min' => 'Please select at least one feature.',
+
                 ]
             );
 

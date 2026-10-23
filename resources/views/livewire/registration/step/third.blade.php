@@ -243,9 +243,9 @@
         @endif
 
 
-
+        {{-- 
         @if ($event->category == 'AF')
-            {{-- AF feature interests --}}
+
             <div class="space-y-2 col-span-2">
                 <div class="text-registrationPrimaryColor">
                     I am interested in the below features
@@ -264,9 +264,34 @@
                     @endforeach
                 </div>
             </div>
+        @endif --}}
+
+        @if ($event->category == 'AF')
+            <div class="space-y-2 col-span-2">
+                <div class="text-registrationPrimaryColor">
+                    I am interested in the below features <span class="text-red-500">*</span>
+                </div>
+
+                <div class="grid grid-cols-1 gap-3">
+                    @foreach (['GPCA Sustainability Pavilion Program', 'GPCA Solutions Xchange Program', 'Women in Chemicals Symposium - By McKinsey', 'Workshop - Shaping the Future of Work in the Chemical Industry: Products, Capabilities and Technology By Alvarez and Marsal', 'Workshop: Build your Green Claims Right A Practical Workshop for Chemical Industry Professionals In collaboration with Quantis – A BCG Company', 'Seminar: Global Shifts, Strategic Choices: The Future of Chemicals Facilitated by ICIS'] as $interestIndex => $interest)
+                        <div class="flex items-start gap-2">
+                            <input type="checkbox" wire:model="mainDelegateInterests" value="{{ $interest }}"
+                                id="mainDelegateAFOption-{{ $interestIndex }}" class="mt-1">
+
+                            <label for="mainDelegateAFOption-{{ $interestIndex }}">
+                                {{ $interest }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+
+                @error('mainDelegateInterests')
+                    <div class="text-red-500 text-xs italic mt-1">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
         @endif
-
-
 
     </div>
 
@@ -378,6 +403,7 @@
                     $jobTitle != null &&
                     $badgeType != null &&
                     $country != null &&
+                    ($event->category != 'AF' || count($mainDelegateInterests) > 0) &&
                     count($additionalDelegates) < 4)
                 <button wire:click.prevent="openAddModal" type="button" wire:key="btnOpenAddModal"
                     class="cursor-pointer hover:bg-registrationPrimaryColor hover:text-white font-bold border-registrationPrimaryColor border-2 bg-white text-registrationPrimaryColor rounded-md py-4 px-10">+
