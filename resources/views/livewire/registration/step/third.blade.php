@@ -273,7 +273,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 gap-3">
-                    @foreach (['GPCA Sustainability Pavilion Program', 'GPCA Solutions Xchange Program', 'Women in Chemicals Symposium - By McKinsey', 'Workshop - Shaping the Future of Work in the Chemical Industry: Products, Capabilities and Technology By Alvarez and Marsal', 'Workshop: Build your Green Claims Right A Practical Workshop for Chemical Industry Professionals In collaboration with Quantis – A BCG Company', 'Seminar: Global Shifts, Strategic Choices: The Future of Chemicals Facilitated by ICIS'] as $interestIndex => $interest)
+                    @foreach (['GPCA Sustainability Pavilion', 'GPCA Solutions Xchange', 'Women in Chemicals Symposium - By McKinsey', 'Workshop - Shaping the Future of Work in the Chemical Industry: Products, Capabilities and Technology By Alvarez and Marsal', 'Workshop: Build your Green Claims Right A Practical Workshop for Chemical Industry Professionals In collaboration with Quantis – A BCG Company', 'Seminar: Global Shifts, Strategic Choices: The Future of Chemicals Facilitated by ICIS'] as $interestIndex => $interest)
                         <div class="flex items-start gap-2">
                             <input type="checkbox" wire:model="mainDelegateInterests" value="{{ $interest }}"
                                 id="mainDelegateAFOption-{{ $interestIndex }}" class="mt-1">
