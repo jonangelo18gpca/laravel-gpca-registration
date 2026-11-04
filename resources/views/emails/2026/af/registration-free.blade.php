@@ -15,7 +15,7 @@
 <p class="sub" style="margin-top: 15px;"><strong>Your registration details as follows:</strong></p>
 
 <p class="sub">Full name: {{ $details['name'] }}</p>
-<p class="sub">Job title: {{ $details['jobTitle'] }}</p>
+{{-- <p class="sub">Job title: {{ $details['jobTitle'] }}</p> --}}
 <p class="sub">Company name: {{ $details['companyName'] }}</p>
 
 @if ($sendInvoice)
