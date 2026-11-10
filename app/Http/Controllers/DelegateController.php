@@ -404,8 +404,8 @@ class DelegateController extends Controller
     {
         $event = Event::where('category', $eventCategory)->where('id', $eventId)->first();
         if ($event) {
-            if ($eventCategory == "AF" && $event->year == "2024") {
-                return view('digital-helper.2024.af.af-digital-helper', [
+            if ($eventCategory == "AF" && $event->year == "2026") {
+                return view('digital-helper.2026.af.af-digital-helper', [
                     "pageTitle" => "Digital helper - " . $event->name,
                     "event" => $event,
                 ]);
@@ -426,8 +426,8 @@ class DelegateController extends Controller
     {
         $event = Event::where('category', $eventCategory)->where('id', $eventId)->first();
         if ($event) {
-            if ($eventCategory == "AF" && $event->year == "2024") {
-                return view('digital-helper.2024.af.af-digital-helper-faq', [
+            if ($eventCategory == "AF" && $event->year == "2026") {
+                return view('digital-helper.2026.af.af-digital-helper-faq', [
                     "pageTitle" => "Digital helper FAQs - " . $event->name,
                     "eventCategory" => $eventCategory,
                     "eventId" => $eventId,
@@ -450,7 +450,7 @@ class DelegateController extends Controller
     {
         $event = Event::where('category', $eventCategory)->where('id', $eventId)->first();
         if ($event) {
-            if ($eventCategory == "AF" && $event->year == "2024") {
+            if ($eventCategory == "AF" && $event->year == "2026") {
                 return view('admin.delegates.add-to-grip', [
                     "pageTitle" => "Add delegates to Grip - " . $event->name,
                     "event" => $event,

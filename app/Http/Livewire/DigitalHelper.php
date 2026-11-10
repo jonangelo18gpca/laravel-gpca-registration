@@ -23,8 +23,8 @@ class DigitalHelper extends Component
 
     public function render()
     {
-        if ($this->event->year == "2024") {
-            return view('livewire.digital-helper.2024.af.digital-helper');
+        if ($this->event->year == "2026") {
+            return view('livewire.digital-helper.2026.af.digital-helper');
         } else {
             return view('livewire.digital-helper.2025.af.digital-helper');
         }

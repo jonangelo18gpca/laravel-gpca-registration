@@ -20,10 +20,10 @@
 
 <body class="font-montserrat">
     <div class="mb-10">
-        <img src="https://www.gpcaforum.com/wp-content/uploads/2025/12/AF-digital-helper-banner-22.png"
+        <img src="https://www.gpcaforum.com/wp-content/uploads/2026/11/20th-Annual-GPCA-Forum-kv_FINAL.png"
             class="w-full object-fill object-center md:hidden block">
 
-        <img src="https://www.gpcaforum.com/wp-content/uploads/2025/12/AF-digital-helper-banner-11-scaled.png"
+        <img src="https://gpcaregistration.com/storage/event/2026/banners/uP8RkFF0NhAir4aUk9cozCf0hdKKM2iXVpKhVbpP.png"
             class="w-full object-fill object-center md:block hidden">
 
         @livewire('digital-helper', ['event' => $event])

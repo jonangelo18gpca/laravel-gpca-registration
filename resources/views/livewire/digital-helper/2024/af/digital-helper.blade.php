@@ -1,6 +1,6 @@
 <div>
     @if ($showCollectYourBadgeDetails)
-        @include('livewire.digital-helper.2024.af.digital_helper_details')
+        @include('livewire.digital-helper.2026.af.digital_helper_details')
     @else
         <div class="w-10/12 mx-auto md:w-full md:px-10">
             <p
