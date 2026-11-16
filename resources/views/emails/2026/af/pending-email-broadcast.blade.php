@@ -272,25 +272,24 @@
 <p class="sub">GPCA Team</p>
 </x-mail::message> --}}
 
-
 <x-mail::message>
 <p class="sub" style="text-align: justify;">Dear {{ $details['fullName'] }},</p>
 
 <p class="sub" style="margin-top: 15px; text-align: justify;">Warm greetings from GPCA!</p>
 
-<p class="sub" style="margin-top: 15px; text-align: justify;">It is with great pleasure to welcome you to the <a href="https://www.gpcaforum.com/" target="_blank">20<sup>th</sup> Annual GPCA Forum</a>, scheduled to take place from 22-24 November 2026 at the Madinat Jumeirah, Dubai, UAE.</p>
+<p class="sub" style="margin-top: 15px; text-align: justify;">We are delighted to welcome you to the <a href="https://www.gpcaforum.com/" target="_blank">20<sup>th</sup> Annual GPCA Forum</a>, taking place from 22-24 November 2026 at Madinat Jumeirah, Dubai, UAE. As you prepare to join us, we kindly ask you to review the important registration and payment information below to ensure your participation is confirmed ahead of the event.</p>
 
-<p class="sub" style="margin-top: 15px; text-align: justify; color: red;">Please note that badges will only be issued to paid registrations. Kindly ensure that your registration dues are settled and paid before 19<sup>th</sup> November to facilitate smooth badge collection onsite. Onsite payment is available through cash (preferred) or credit card.</p>
+<p class="sub" style="margin-top: 15px; text-align: justify; color: red;">Please note that delegate badges will only be issued upon full settlement of registration fees. To ensure a smooth badge collection onsite, we kindly ask you to settle your outstanding payment by 21<sup>st</sup> November. For your convenience, onsite payment facilities will also be available through cash (preferred) and credit card.</p>
 
-<p class="sub" style="margin-top: 15px; text-align: justify;">We are pleased to confirm your registration. Below is a summary of your booking confirmation, including details for badge collection. Please bring a valid ID and your registration confirmation to collect your badge.</p>
+<p class="sub" style="margin-top: 15px; text-align: justify;">Once your payment has been settled, your registration will be fully confirmed, and your badge will be available for collection onsite. Below is a summary of your registration details and badge collection information. Please bring a valid ID and your registration confirmation when collecting your badge.</p>
 
 <p class="sub" style="margin-top: 15px;"><strong>Badge Collection</strong></p>
 
-<p class="sub" style="text-align: justify;">Badge pickup will begin on <strong>21<sup>st</sup> November</strong> at the <strong>designated registration desk on-site</strong>. We encourage you to collect your badge early to avoid any delays and to help streamline your entry into the event.</p>
+<p class="sub" style="text-align: justify;">Badge pickup will commence on 21 November at the designated registration desk at the venue. We encourage you to collect your badge in advance to avoid queues and ensure a smooth and seamless access to the forum.</p>
 
 <p class="sub" style="margin-top: 15px; text-align: justify;"><strong>TO FIND THE EXACT LOCATION WHERE YOU CAN COLLECT YOUR BADGE ONSITE KINDLY CLICK <a href="https://gpcaregistration.com/event/AF/37/digital-helper" target="_blank">HERE</a></strong></p>
 
-<p class="sub" style="margin-top: 15px;"><strong>Date and timings</strong></p>
+<p class="sub" style="margin-top: 15px;"><strong>DATES AND TIMINGS</strong></p>
 
 <table cellpadding="5" cellspacing="0" style="border-collapse: collapse; border: 1px solid #000000;">
     <tr>
@@ -311,7 +310,7 @@
     </tr>
 </table>
 
-<p class="sub" style="margin-top: 15px;"><strong>Locations</strong></p>
+<p class="sub" style="margin-top: 15px;"><strong>LOCATIONS</strong></p>
 
 <table cellpadding="5" cellspacing="0" style="border-collapse: collapse; border: 1px solid #000000;">
     <tr>
@@ -326,7 +325,7 @@
     <tr><td width="144" style="border: 1px solid #000000;"><p class="sub">Media</p></td></tr>
 </table>
 
-<p class="sub" style="margin-top: 15px;"><strong>Delegate Details</strong></p>
+<p class="sub" style="margin-top: 15px;"><strong>Your Registration Details</strong></p>
 <p class="sub"><strong>Full name: {{ $details['fullName'] }}</strong></p>
 <p class="sub"><strong>Company name: {{ $details['companyName'] }}</strong></p>
 <p class="sub"><strong>Badge Type: {{ $details['badgeType'] }}</strong></p>
@@ -334,9 +333,9 @@
 
 <p class="sub" style="margin-top: 15px;"><strong>General Information</strong></p>
 
-<p class="sub" style="text-align: justify;">All registered attendees attending the 20<sup>th</sup> Annual GPCA Forum are warmly invited to join us for the Networking Luncheons served from Day 1 to Day 3 of the event.</p>
+<p class="sub" style="text-align: justify;">All registered delegates of the 20<sup>th</sup> Annual GPCA Forum are invited to join us for the Networking Luncheons, served daily from Day 1 to Day 3 of the forum.</p>
 
-<p class="sub" style="margin-top: 15px;"><strong>Locations</strong></p>
+<p class="sub" style="margin-top: 15px;"><strong>LOCATIONS</strong></p>
 
 <table cellpadding="5" cellspacing="0" style="border-collapse: collapse; border: 1px solid #000000;">
     <tr>
@@ -352,9 +351,9 @@
     <tr><td width="141" style="border: 1px solid #000000;"><p class="sub">Exhibitor</p></td></tr>
 </table>
 
-<p class="sub" style="margin-top: 15px;"><strong><em>To access the venue, please present your delegate pass.</em></strong></p>
+<p class="sub" style="margin-top: 15px; text-align: justify;"><strong>IMPORTANT:</strong> Please wear your delegate badge at all times to access to the venue and the designated forum areas.</p>
 
-<p class="sub" style="margin-top: 15px;">We look forward to welcoming you to this exceptional event!</p>
+<p class="sub" style="margin-top: 15px; text-align: justify;">We look forward to welcoming you to Dubai for this landmark edition of the Annual GPCA Forum.</p>
 
 <p class="sub" style="margin-top: 15px;">Best regards,</p>
 
