@@ -32,7 +32,7 @@
                     <p>If you are not confirmed or have not paid yet, please proceed to the new registration counter. You can find the location of the new registration counter in the image below:</p>
 
                     <div class="flex flex-col gap-3 items-center">
-                        <img src="https://www.gpcaforum.com/wp-content/uploads/2025/12/new-registration-2.png" class="w-full block">
+                        <img src="https://www.gpcaforum.com/wp-content/uploads/2026/11/companies3.png" class="w-full block">
                     </div>
 
                     <p class="mt-4">

@@ -207,6 +207,71 @@ class DigitalHelper extends Component
     }
 
 
+  public function getTextAndVisualDetails2026($companyName, $badgeType, $isPrinted)
+{
+    $base = 'https://www.gpcaforum.com/wp-content/uploads/2026/11/';
+    $img1 = $base . 'vip1.png';        // VIP & Speaker + ABCD
+    $img2 = $base . 'companies1.png';  // EFGH / IJKL
+    $img3 = $base . 'companies2.png';  // MNOP / QRST
+    $img4 = $base . 'companies3.png';  // UVWXYZ / REGISTRATION (TODO: confirm, probably companies3.png)
+
+    $letterCounters = [
+        'ABCD'   => [$img1],
+        'EFGH'   => [$img2],
+        'IJKL'   => [$img2],
+        'MNOP'   => [$img3],
+        'QRST'   => [$img3],
+        'UVWXYZ' => [$img4],
+    ];
+
+    $howToCollectYourBadge = null;
+    $imageLinks = [];
+    $badge = strtoupper($badgeType);
+    $firstLetter = strtoupper(substr(trim($companyName), 0, 1));
+
+    if ($badge == "VIP" || $badge == "SPEAKER") {
+        $imageLinks = [$img1];
+        $howToCollectYourBadge = "Please proceed to the Registration Area and line up at counter \"VIP & SPEAKERS\". You can find the counter assignment in the image below:";
+    } else {
+        $counterGroup = null;
+
+        if (preg_match('/^[A-Z]$/', $firstLetter)) {
+            foreach ($letterCounters as $counterKey => $counter) {
+                if (strpos($counterKey, $firstLetter) !== false) {
+                    $counterGroup = $counterKey;
+                    $imageLinks = $counter;
+                    break;
+                }
+            }
+        }
+
+        if ($counterGroup) {
+            $howToCollectYourBadge = "Please proceed to the Registration Area and line up at counter '$counterGroup'. You can find the counter assignment based on your company's first letter in the image below";
+        } else {
+            $imageLinks = [$img4];
+            $howToCollectYourBadge = "Please proceed to the Registration counter. You can find the counter assignment in the image below:";
+        }
+    }
+
+    return [
+        'howToCollectYourBadge' => $howToCollectYourBadge,
+        'imageLinks' => $imageLinks,
+    ];
+}
+
+
+
+
+    private function getBadgeDetails($companyName, $badgeType, $isPrinted)
+    {
+        if ($this->event->year == "2026") {
+            return $this->getTextAndVisualDetails2026($companyName, $badgeType, $isPrinted);
+        }
+        return $this->getTextAndVisualDetails2025($companyName, $badgeType, $isPrinted);
+    }
+
+
+
     public function getTextAndVisualDetails2024($companyName, $badgeType, $isPrinted)
     {
         $letterCounters1 = [
@@ -378,7 +443,8 @@ class DigitalHelper extends Component
                         if ($isCollectedBy != null) {
                             $howToCollectYourBadge = $isCollectedBy;
                         } else {
-                            $data = $this->getTextAndVisualDetails2025($companyName, $mainDelegate->badge_type, $isPrinted);
+                            // $data = $this->getTextAndVisualDetails2025($companyName, $mainDelegate->badge_type, $isPrinted);
+                            $data = $this->getBadgeDetails($companyName, $mainDelegate->badge_type, $isPrinted);
                             $howToCollectYourBadge = $data['howToCollectYourBadge'];
                             $visuals = $data['imageLinks'];
                         }
@@ -437,7 +503,8 @@ class DigitalHelper extends Component
                                 if ($isCollectedBy != null) {
                                     $howToCollectYourBadge = $isCollectedBy;
                                 } else {
-                                    $data = $this->getTextAndVisualDetails2025($companyName, $subDelegate->badge_type, $isPrinted);
+                                    // $data = $this->getTextAndVisualDetails2025($companyName, $subDelegate->badge_type, $isPrinted);
+                                    $data = $this->getBadgeDetails($companyName, $subDelegate->badge_type, $isPrinted);
                                     $howToCollectYourBadge = $data['howToCollectYourBadge'];
                                     $visuals = $data['imageLinks'];
                                 }
