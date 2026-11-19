@@ -274,6 +274,9 @@ Madinat Jumeirah, Dubai, UAE</strong>.</p>
 </x-mail::message> --}}
 
 <x-mail::message>
+
+<img src="https://gpcaregistration.com/storage/event/2026/banners/uP8RkFF0NhAir4aUk9cozCf0hdKKM2iXVpKhVbpP.png" width="600">
+<br>
 <p class="sub" style="text-align: justify;">Dear {{ $details['fullName'] }},</p>
 
 <p class="sub" style="margin-top: 15px; text-align: justify;">Warm greetings from GPCA!</p>
